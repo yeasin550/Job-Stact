@@ -18,7 +18,7 @@ const Home = () => {
       <ChooseWork></ChooseWork>
       <PromotingCareer />
       <NewsInsights />
-      <Contact></Contact>
+      <Contact/>
     </div>
   );
 };
