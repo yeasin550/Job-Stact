@@ -132,7 +132,7 @@ const Footer = () => {
       <div className="mt-8 font-bold">
         <hr />
       </div>
-      <p className="text-center mt-7 mb-10 text-sm pb-4">
+      <p className="text-center mt-7 text-sm pb-4">
         Copyright &copy; 2023 Job-Stack, All rights reserved By Hexa-Coders Team
       </p>
     </div>
