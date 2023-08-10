@@ -1,10 +1,13 @@
 import React from 'react';
+import Categories from './HomeChildren/Categories/Categories';
+import LatestJobs from './HomeChildren/LatestJob/LatestJobs';
 
 const Home = () => {
     return (
         <div>
             
-            home
+            <Categories />
+            <LatestJobs/>
         </div>
     );
 };
