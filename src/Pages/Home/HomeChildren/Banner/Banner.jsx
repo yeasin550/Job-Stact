@@ -30,7 +30,7 @@ const Banner = () => {
 
           <h3 className="text-xl text-gray-500">
             There are many variations passages of Lorem Ipsum Fasts by injected
-            humour, or randomised words which....
+            humour, or randomised words which...
           </h3>
 
           <div className="pt-6">
@@ -45,3 +45,5 @@ const Banner = () => {
 };
 
 export default Banner;
+
+

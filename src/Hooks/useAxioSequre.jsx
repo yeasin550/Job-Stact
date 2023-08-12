@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const axiosSequre = axios.create({
-  baseURL:
-    "https://jobstack-backend-teal.vercel.app/users?fbclid=IwAR3FeBKN8tiKE3RmD1VmimBEuF_XinFyjRttVolgBdj2e_CCF_1wTRadRsI",
+    baseURL: 'https://jobstack-backend-teal.vercel.app',
 });
 
 const useAxioSequre = () => {
