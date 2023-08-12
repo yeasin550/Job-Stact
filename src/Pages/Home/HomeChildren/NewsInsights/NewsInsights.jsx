@@ -1,6 +1,6 @@
 import React from "react";
 import { FaHandPointRight, FaRegCommentDots, FaUserAlt } from "react-icons/fa";
-
+// import  './NewsInsights.css'
 const NewsInsights = () => {
   return (
     <div className="my-16 md:px-20 ">
@@ -10,9 +10,9 @@ const NewsInsights = () => {
           Mauris ut cursus nunc. Morbi eleifend, ligula at consectetur vehicula
         </p>
       </div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {/* div-1 */}
-        <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-2">
+        <div className="w-full max-w-screen-xl mx-auto p-5 sm:p-10 md:p-2">
           <div className="rounded overflow-hidden flex flex-col max-w-xl mx-auto">
             <a href="#">
               <img
@@ -120,7 +120,7 @@ const NewsInsights = () => {
 
       {/* post jobs now */}
       <div className="flex justify-between items-center shadow-lg shadow-gray-300 mt-5 pr-7">
-        <div className="text-4xl py-7 px-9 font-bold bg-green-500 text-white">
+        <div className="text-4xl py-7 px-9 font-bold custom-shape  relative bg-green-500 text-white">
           Post jobs now
         </div>
         <div>Start your free trial today, no credit card is required.</div>
