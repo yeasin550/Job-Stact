@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, {useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
-import { FaUserAlt } from "react-icons/fa";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { FaBell, FaHome, FaRegCommentDots, FaShoppingBag, FaUserAlt, FaUserFriends } from "react-icons/fa";
+// import { FaUserAlt } from "react-icons/fa";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
-
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => console.log(error));
+  };
   return (
     <nav className="w-full bg-white shadow fixed z-30 top-0 left-0">
       <div className="justify-between px-5 mx-auto lg:max-w-screen-xl md:items-center md:flex sticky ">
@@ -94,16 +103,41 @@ const Navbar = () => {
           }`}
         >
           <ul className="items-center justify-center text-center text-lg space-y-8 md:flex md:space-x-6 md:space-y-0">
-            <li className="">
-              <Link to="/">Home</Link>
+            <li>
+              <Link to="/">
+                <FaHome className="mx-auto"></FaHome>Home
+              </Link>
             </li>
-            <li className="">
-              <Link to="/collage">Jobs</Link>
+
+            {user ? <li>
+              <Link to="/myNetworks">
+                <FaUserFriends className="mx-auto"></FaUserFriends> My Networks
+              </Link>
+            </li> : ""}
+
+            {user ? <li>
+              <Link to="/jobs">
+                <FaShoppingBag s className="mx-auto"></FaShoppingBag> Jobs
+              </Link>
+            </li> : ""}
+           {user ?  <li>
+              <Link to="/messaging">
+                <FaRegCommentDots s className="mx-auto"></FaRegCommentDots>
+                Messaging
+              </Link>
+            </li> : ""}
+            <li>
+              <Link to="/notifications">
+                <FaBell className="mx-auto"></FaBell>
+                Notifications
+              </Link>
             </li>
             <li>
-              <Link to="/admission">Candidates</Link>
+              <Link to="/profile">
+                <FaUserAlt className="mx-auto"></FaUserAlt> Profile
+              </Link>
             </li>
-            <div className="dropdown dropdown-hover">
+            {/* <div className="dropdown dropdown-hover">
               <label tabIndex={0} className="">
                 Pages
               </label>
@@ -121,11 +155,11 @@ const Navbar = () => {
                   <Link to="/admission">Blog</Link>
                 </li>
               </ul>
-            </div>
+            </div> */}
 
-            <li>
+            {/* <li>
               <Link to="/admission">Contact</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -134,11 +168,22 @@ const Navbar = () => {
             navbar ? "block" : "hidden"
           }`}
         >
-          <ul className="items-center flex justify-center mx-auto text-lg gap-3">
-            <button className="px-5 py-2 bg-[#00B04D] hover:bg-white hover:text-black text-white rounded-md  btn-outline btn">
-              <Link>Login</Link>
-            </button>
-          </ul>
+          {user ? (
+            <Link to="/login">
+              <button
+                onClick={handleLogOut}
+                className="mt-3 relative flex items-center justify-center text-lg mr-4 gap-2 px-5 py-2.5  bg-green-500 0 text-white rounded-lg shadow-md transition-all hover:shadow-lg  border-2 hover:border-green-500"
+              >
+                LogOut
+              </button>
+            </Link>
+          ) : (
+            <Link to="/login">
+              <button className=" mt-3 relative flex items-center justify-center text-lg mr-4 gap-2 px-5 py-2.5  bg-green-500 rounded-lg shadow-md transition-all hover:shadow-lg border-2 text-white hover:border-green-500">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </nav>

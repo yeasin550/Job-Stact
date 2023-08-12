@@ -11,6 +11,7 @@ import {
     signOut,
     updateProfile,
     sendEmailVerification,
+    sendPasswordResetEmail,
 } from "firebase/auth";
 
 //context api create
@@ -46,7 +47,10 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signInWithPopup(auth, googleProvider);
     };
-
+    // reset password
+      const resetPassword = (email) => {
+        return sendPasswordResetEmail(auth, email);
+      };
     // facebook signin function
     const facebookSighIn = () => {
         setLoading(true);
@@ -78,15 +82,16 @@ const AuthProvider = ({ children }) => {
     }, []);
    
     const authInfo = {
-        user,
-        loading,
-        createUser,
-        signIn,
-        googleSignIn,
-        logOut,
-        updateUserProfile,
-        facebookSighIn,
-      };
+      user,
+      loading,
+      createUser,
+      signIn,
+      googleSignIn,
+      logOut,
+      updateUserProfile,
+      facebookSighIn,
+      resetPassword,
+    };
     return (
         <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
     );

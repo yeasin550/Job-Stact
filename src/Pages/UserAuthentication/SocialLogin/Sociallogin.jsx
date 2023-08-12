@@ -38,14 +38,23 @@ const Sociallogin = () => {
   }
   return (
     <div>
-      <div className='flex justify-center items-center gap-6 mt-4'>
-
-        <div onClick={handleGoogleSignIn} className="border flex justify-center items-center gap-2 w-full py-2 border-green-500">
-          <p className="text-2xl text-yellow-400"><FaGoogle /></p>
+      <div className="flex justify-center items-center gap-6 mt-4">
+        <div
+          onClick={handleGoogleSignIn}
+          className="border cursor-pointer flex justify-center items-center gap-2 w-full py-2 border-green-500"
+        >
+          <p className="text-2xl text-yellow-400">
+            <FaGoogle />
+          </p>
           <p>Google</p>
         </div>
-        <div onClick={handleFaceBookSignIn} className="border flex justify-center items-center gap-2 w-full py-2 border-green-500">
-          <p className="text-2xl text-blue-400"><FaFacebook /></p>
+        <div
+          onClick={handleFaceBookSignIn}
+          className="border cursor-pointer flex justify-center items-center gap-2 w-full py-2 border-green-500"
+        >
+          <p className="text-2xl text-blue-400">
+            <FaFacebook />
+          </p>
           <p>Facebook</p>
         </div>
       </div>
