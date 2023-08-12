@@ -7,7 +7,7 @@ const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
 
   return (
-    <nav className="w-full bg-white shadow fixed z-30">
+    <nav className="w-full bg-white shadow fixed z-30 top-0 left-0">
       <div className="justify-between px-5 mx-auto lg:max-w-screen-xl md:items-center md:flex sticky ">
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <div className="flex gap-8 items-center">
@@ -135,11 +135,8 @@ const Navbar = () => {
           }`}
         >
           <ul className="items-center flex justify-center mx-auto text-lg gap-3">
-            <Link to="/login">
-              <FaUserAlt className="text-xl" />
-            </Link>
             <button className="px-5 py-2 bg-[#00B04D] hover:bg-white hover:text-black text-white rounded-md  btn-outline btn">
-              <Link>Post Job</Link>
+              <Link>Login</Link>
             </button>
           </ul>
         </div>
