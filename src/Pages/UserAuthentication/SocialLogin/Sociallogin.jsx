@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../../Providers/AuthProvider';
-import Swal from 'sweetalert2';
-import useAxioSequre from '../../../Hooks/useAxiosSecure';
-import { FaFacebook, FaGoogle } from 'react-icons/fa';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import Swal from "sweetalert2";
+
+import { FaFacebook, FaGoogle } from "react-icons/fa";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAxioSequre from "../../../Hooks/useAxiosSequre";
 
 const Sociallogin = () => {
   const [error, setError] = useState();
@@ -16,26 +17,29 @@ const Sociallogin = () => {
   // handle google login or sign in  and data save server
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then(result => {
+      .then((result) => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         Swal.fire({
-          icon: 'success',
-          title: 'Login successfully.',
-          timer: 1500
+          icon: "success",
+          title: "Login successfully.",
+          timer: 1500,
         });
-        const saveUser = { name: loggedInUser?.displayName, email: loggedInUser?.email, image: loggedInUser?.photoURL }
-        axiosSequre("/users", saveUser)
-          .then(() => {
-            navigate(from, { replace: true });
-          })
-      }).catch(err => {
-        setError(err.message);
+        const saveUser = {
+          name: loggedInUser?.displayName,
+          email: loggedInUser?.email,
+          image: loggedInUser?.photoURL,
+        };
+        axiosSequre("/users", saveUser).then(() => {
+          navigate(from, { replace: true });
+        });
       })
-  }
+      .catch((err) => {
+        setError(err.message);
+      });
+  };
   // handle Facebook login or sign in  and data save server
-  const handleFaceBookSignIn = () => {
-  }
+  const handleFaceBookSignIn = () => {};
   return (
     <div>
       <div className="flex justify-center items-center gap-6 mt-4">

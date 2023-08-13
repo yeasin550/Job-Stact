@@ -3,6 +3,9 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/UserAuthentication/Register/Register";
 import Login from "../Pages/UserAuthentication/Login/Login";
+import UserProfile from "../Pages/UserProfile/UserProfile";
+import UserInfo from "../Pages/UserDetails/UserInfo/UserInfo";
+import UserOverView from "../Pages/UserDetails/UserOverView/UserOverView";
 
 const router = createBrowserRouter([
     {
@@ -21,8 +24,22 @@ const router = createBrowserRouter([
                 path: 'login',
                 element: <Login></Login>
             },
-         
+            {
+                path: 'profile',
+                element: <UserProfile></UserProfile>
+            }
         ]
+    },
+    {
+        path: 'userinfo',
+        element: <UserInfo></UserInfo>,
+        children: [
+            {
+                path: 'overview',
+                element: <UserOverView></UserOverView>
+            }
+        ]
+
     }
 ]);
 

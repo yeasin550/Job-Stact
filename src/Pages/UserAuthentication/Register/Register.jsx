@@ -7,7 +7,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Lottie from "lottie-react";
 import signupanimation from "../../../assets/animation/105639-signup.json";
 import { sendEmailVerification } from "firebase/auth";
-import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import useAxioSequre from "../../../Hooks/useAxiosSequre";
+
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const Register = () => {
@@ -16,7 +17,7 @@ const Register = () => {
   const [error, setError] = useState("");
   const [userEroor, setUserError] = useState("");
   const navigate = useNavigate();
-  const [axiosSecure] = useAxiosSecure();
+  const [axiosSequre] = useAxioSequre();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
@@ -68,7 +69,7 @@ const Register = () => {
                   image: imgURL,
                   gender: data.gender,
                 };
-                axiosSecure.post("/users", saveUser).then((data) => {
+                axiosSequre.post("/users", saveUser).then((data) => {
                   console.log(data);
                   if (data.data.insertedId) {
                     reset();
@@ -94,8 +95,6 @@ const Register = () => {
       setError("Wrong password. Please re-type your password.");
     }
   };
-
-
 
   return (
     <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-10 lg:px-20 px-2 mb-24">
