@@ -1,11 +1,10 @@
 import React from "react";
 import "./Banner.css";
-import banner from "../../../../../public/banner.png";
+import banner from "../../../../assets/images/banner.png";
 import Typewriter from "typewriter-effect";
-
 const Banner = () => {
   return (
-    <div className="max-w-screen-xl px-5 mx-auto min-h-screen  ">
+    <div className="max-w-screen-xl px-5 mx-auto min-h-screen">
       <div className="grid md:grid-cols-2 gap-4 items-center justify-center ">
         {/* ====================Left part */}
         <div className="pt-28 ">

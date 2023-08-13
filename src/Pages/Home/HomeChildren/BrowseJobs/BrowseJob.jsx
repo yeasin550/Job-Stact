@@ -1,8 +1,7 @@
 import React from 'react';
-import Img from '../../../../../public/home.png'
+import Img from '../../../../assets/images/home.png'
 import {FaBookmark, FaRegAddressCard} from 'react-icons/fa';
 import { TfiEmail } from "react-icons/tfi";
-
 const BrowseJob = () => {
     return (
         <div className='p-20 mb-10 max-w-screen-xl px-5 mx-auto'>
