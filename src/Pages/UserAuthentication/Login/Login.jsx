@@ -8,7 +8,9 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import Sociallogin from "../SocialLogin/Sociallogin";
 import { sendEmailVerification } from "@firebase/auth";
+
 const Login = () => {
+
   // Authcontext import auth info and 2 hokks
   const { resetPassword } = useContext(AuthContext);
   const { signIn } = useContext(AuthContext);
@@ -51,6 +53,7 @@ const Login = () => {
   //       console.log(err.message);
   //     });
   // };
+  
     const onSubmit = async (data) => {
       try {
         // console.log(data);
@@ -77,6 +80,7 @@ const Login = () => {
       }
     };
 
+  // handle reset password
   const handleResetPassword = (event) => {
     setError(null);
     event.preventDefault();
@@ -85,7 +89,14 @@ const Login = () => {
 
     resetPassword(email)
       .then((result) => {
-        toast.success("Check your email to reset password");
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Check your email to reset password",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // toast.success("Check your email to reset password");
         form.reset();
         navigate("/login");
       })
@@ -94,6 +105,7 @@ const Login = () => {
         console.log(error);
       });
   };
+
 
 
   return (
@@ -186,7 +198,7 @@ const Login = () => {
         <input type="checkbox" id="my_modal_6" className="modal-toggle" />
         <div className="modal">
           <div className="modal-box">
-            <from onSubmit={handleResetPassword}>
+            <form onSubmit={handleResetPassword}>
               <h4 className="text-green-700 text-2xl font-bold mb-5 text-center">
                 Forgot Password?
               </h4>
@@ -210,7 +222,7 @@ const Login = () => {
                 Send Email
               </button>
               <p className="text-error text-center mt-2">{error}</p>
-            </from>
+            </form>
             <div className="modal-action">
               <label
                 htmlFor="my_modal_6"

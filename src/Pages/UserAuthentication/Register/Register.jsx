@@ -4,28 +4,29 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import useAxioSequre from "../../../Hooks/useAxioSequre";
 import Lottie from "lottie-react";
 import signupanimation from "../../../assets/animation/105639-signup.json";
+import { sendEmailVerification } from "firebase/auth";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const Register = () => {
   const [show, setShow] = useState(false);
   const [shows, setShows] = useState(false);
   const [error, setError] = useState("");
-  const [userEroor, setUserEroor] = useState("");
+  const [userEroor, setUserError] = useState("");
   const navigate = useNavigate();
-  const [axiosSequre] = useAxioSequre();
+  const [axiosSecure] = useAxiosSecure();
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
 
   //password text toogle
-  const handlevisiblepaswordfirst = () => {
+  const handleVisiblePasswordFirst = () => {
     setShows(!shows);
   };
 
   //password text toogle
-  const handlevisiblepasword = () => {
+  const handleVisiblePassword = () => {
     setShow(!show);
   };
 
@@ -36,11 +37,12 @@ const Register = () => {
     reset,
     formState: { errors },
   } = useForm();
-  //user data submit function
+
+  // main form
+
   const onSubmit = (data) => {
     console.log(data);
-    if (data.password == data.confrimpassword) {
-      //img hostion imgbb
+    if (data.password == data.confirmPassword) {
       const formData = new FormData();
       formData.append("image", data.image[0]);
       fetch(img_hosting_url, {
@@ -56,6 +58,8 @@ const Register = () => {
               .then((result) => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                sendEmailVerification(loggedUser);
+
                 updateUserProfile(data.name, imgURL);
                 console.log(loggedUser);
                 const saveUser = {
@@ -64,7 +68,7 @@ const Register = () => {
                   image: imgURL,
                   gender: data.gender,
                 };
-                axiosSequre.post("/users", saveUser).then((data) => {
+                axiosSecure.post("/users", saveUser).then((data) => {
                   console.log(data);
                   if (data.data.insertedId) {
                     reset();
@@ -74,22 +78,25 @@ const Register = () => {
                       timer: 1500,
                     });
                     setTimeout(() => {
-                      navigate("/");
+                      navigate("/"); // Use navigate to navigate
                     }, 2000);
                   }
                 });
               })
               .catch((error) => {
-                setUserEroor(error.message);
+                setUserError(error.message);
               });
           } else {
-            setUserEroor("image response not success");
+            setUserError("Image response not success");
           }
         });
     } else {
-      setError("worng password re type your pasword");
+      setError("Wrong password. Please re-type your password.");
     }
   };
+
+
+
   return (
     <div className="flex flex-col lg:flex-row justify-center items-center lg:gap-10 lg:px-20 px-2 mb-24">
       <div className="w-full lg:w-3/4">
@@ -110,9 +117,7 @@ const Register = () => {
                 className="input input-bordered"
               />
               {errors.name && (
-                <span className="text-red-600">
-                  First Name is required
-                </span>
+                <span className="text-red-600">First Name is required</span>
               )}
             </div>
             <div className="form-control w-full">
@@ -132,9 +137,7 @@ const Register = () => {
                 <option>Other</option>5432
               </select>
               {errors.gender && (
-                <span className="text-red-600">
-                  Gender is required
-                </span>
+                <span className="text-red-600">Gender is required</span>
               )}
             </div>
           </div>
@@ -172,7 +175,6 @@ const Register = () => {
               />
               {errors.image && (
                 <span className="text-red-600 animate-pulse">
-                  
                   Image is required
                 </span>
               )}
@@ -194,7 +196,7 @@ const Register = () => {
                 className="input input-bordered"
               />
               <span
-                onClick={handlevisiblepaswordfirst}
+                onClick={handleVisiblePasswordFirst}
                 className="absolute  top-[50px] right-4 text-[18px]"
               >
                 {shows ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
@@ -217,17 +219,17 @@ const Register = () => {
               </label>
               <input
                 type={show ? "text" : "password"}
-                {...register("confrimpassword", { required: true })}
+                {...register("confirmPassword", { required: true })}
                 placeholder="Re type password"
                 className="input input-bordered"
               ></input>
               <span
-                onClick={handlevisiblepasword}
+                onClick={handleVisiblePassword}
                 className="absolute top-[50px] right-4 text-[18px]"
               >
                 {show ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
               </span>
-              {errors.confrimpassword?.type === "required" && (
+              {errors.confirmPassword?.type === "required" && (
                 <p className="text-red-600">Confirm Password is required</p>
               )}
               {error && <p className="text-error mb-2">{error}</p>}

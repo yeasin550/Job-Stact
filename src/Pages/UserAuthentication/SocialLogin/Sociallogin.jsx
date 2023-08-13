@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
-import useAxioSequre from '../../../Hooks/useAxioSequre';
+import useAxioSequre from '../../../Hooks/useAxiosSecure';
 import { FaFacebook, FaGoogle } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
 
