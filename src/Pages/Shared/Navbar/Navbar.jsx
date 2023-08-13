@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/logo/logo.png";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { FaBell, FaHome, FaRegCommentDots, FaShoppingBag, FaUserAlt, FaUserFriends } from "react-icons/fa";
-// import { FaUserAlt } from "react-icons/fa";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  // user logout function 
   const handleLogOut = () => {
     logOut()
       .then((result) => {
@@ -15,8 +15,9 @@ const Navbar = () => {
       })
       .catch((error) => console.log(error));
   };
+
   return (
-    <nav className="w-full bg-white shadow fixed z-30 top-0 left-0">
+    <nav className="w-full bg-white shadow sticky z-30 top-0 left-0">
       <div className="justify-between px-5 mx-auto lg:max-w-screen-xl md:items-center md:flex sticky ">
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <div className="flex gap-8 items-center">
@@ -137,29 +138,6 @@ const Navbar = () => {
                 <FaUserAlt className="mx-auto"></FaUserAlt> Profile
               </Link>
             </li>
-            {/* <div className="dropdown dropdown-hover">
-              <label tabIndex={0} className="">
-                Pages
-              </label>
-              <ul
-                tabIndex={0}
-                className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <Link to="/admission">About</Link>
-                </li>
-                <li>
-                  <Link to="/admission">Service</Link>
-                </li>
-                <li>
-                  <Link to="/admission">Blog</Link>
-                </li>
-              </ul>
-            </div> */}
-
-            {/* <li>
-              <Link to="/admission">Contact</Link>
-            </li> */}
           </ul>
         </div>
 
