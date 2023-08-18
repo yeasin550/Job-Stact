@@ -30,7 +30,7 @@ const router = createBrowserRouter([
                 element: <UserProfile></UserProfile>
             },
             // {
-            //     path: 'jobs',
+            //     path: df'jobs',
             //     element: <UserAllJobsData></UserAllJobsData>
             // }
         ]
