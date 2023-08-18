@@ -6,6 +6,7 @@ import Login from "../Pages/UserAuthentication/Login/Login";
 import UserProfile from "../Pages/UserProfile/UserProfile";
 import UserInfo from "../Pages/UserDetails/UserInfo/UserInfo";
 import UserOverView from "../Pages/UserDetails/UserOverView/UserOverView";
+// import UserAllJobsData from "../Pages/UserAllJobsData/UserAllJobsData";
 
 const router = createBrowserRouter([
     {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
             {
                 path: 'profile',
                 element: <UserProfile></UserProfile>
-            }
+            },
+            // {
+            //     path: 'jobs',
+            //     element: <UserAllJobsData></UserAllJobsData>
+            // }
         ]
     },
     {

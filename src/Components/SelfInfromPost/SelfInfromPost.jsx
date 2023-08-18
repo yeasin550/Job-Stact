@@ -1,11 +1,7 @@
 import React from 'react';
 
 const SelfInfromPost = () => {
-    return (
-        <div>
-            self Infrom post
-        </div>
-    );
+    return <div>SelfInfromPost</div>;
 };
 
 export default SelfInfromPost;
