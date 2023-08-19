@@ -23,10 +23,9 @@ const UserProfile = () => {
 
   // single user email fetch and job post 
     const { data: userJobPosts = [] } = useQuery(["userJobPosts"], async () => {
-      const res = await axiosSequre.get(`/jobs?=${user?.email}`);
+      const res = await axiosSequre.get(`/job?=${user?.email}`);
       return res.data;
     });
-  
   console.log(userJobPosts)
   
   //set active tab design function

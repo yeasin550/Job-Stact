@@ -87,7 +87,7 @@ const UserJobDataPost = () => {
 
   return (
     <div className="">
-      <div className="flex justify-start items-center gap-3 border border-gray-100 bg-gray-50 rounded-md py-5 px-3  w-full">
+      <div className="flex justify-start items-center  gap-3 border shadow-md border-gray-300 bg-gray-50 rounded-md py-5 px-3  w-full">
         <img
           className="w-14 h-14 rounded-full"
           src="https://i.ibb.co/0fZvJMk/364805402-265317659588730-4531070019685307614-n.jpg"
@@ -95,15 +95,15 @@ const UserJobDataPost = () => {
         />
         <label
           htmlFor="my_modal_6"
-          className="text-left flex items-center gap-5 w-full md:w-8/12 cursor-pointer text-green-500 font-semibold"
+          className="text-left flex items-center gap-5 w-full md:w-9/12 cursor-pointer text-green-500 font-semibold"
         >
           <h1 className="px-3 w-full h-12 rounded-full bg-gray-200 hover:bg-gray-300 text-black flex justify-center items-center text-lg">
             Job post
           </h1>
           <div>
             <img
-              className="w-20 h-20 rounded-full"
-              src="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?w=826&t=st=1692091974~exp=1692092574~hmac=15e47b9e6f5cf8f13dc4d8f910d754134ab6a6880e7f3069da352d35299d3039"
+              className="w-48 h-16 rounded-md"
+              src="https://img.freepik.com/free-vector/online-image-upload-landing-page_23-2148282428.jpg?w=740&t=st=1692425608~exp=1692426208~hmac=1c2c68a114d1100fa04a811c2984c7d96b546b45b1d37cb7add84227f2ddcb52"
               alt=""
             />
           </div>

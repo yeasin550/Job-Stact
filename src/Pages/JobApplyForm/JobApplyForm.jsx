@@ -5,6 +5,7 @@ import useAxioSequre from "../../Hooks/useAxiosSequre";
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const JobApplyForm = () => {
+      const [selectedFile, setSelectedFile] = useState(null);
   const [text, setText] = useState("");
   const [axiosSequre] = useAxioSequre();
   const [userEroor, setUserError] = useState("");
@@ -85,6 +86,17 @@ const JobApplyForm = () => {
       });
   };
 
+
+
+ 
+
+   const onFileDrop = (event) => {
+     event.preventDefault();
+     const droppedFile = event.dataTransfer.files[0];
+     setSelectedFile(droppedFile);
+   };
+
+
   return (
     <div className="">
       <div className="flex justify-start items-center gap-3 w-full">
@@ -105,9 +117,7 @@ const JobApplyForm = () => {
         <div className="modal py-0">
           <div className="absolute modal-box">
             <div className="modal-action">
-              <h1 className="mr-20 font-semibold text-3xl">
-                Applications
-              </h1>
+              <h1 className="mr-20 font-semibold text-3xl">Applications</h1>
 
               <label
                 htmlFor="my_modal_6"
@@ -133,69 +143,133 @@ const JobApplyForm = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="w-full lg:px-2 px-4 border-bg-white rounded-lg text-black"
             >
+              {/* name */}
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  {...register("name", { required: true })}
+                  placeholder="type here"
+                  className="input input-bordered"
+                />
+                {errors.name && (
+                  <span className="text-red-600"> Name is required</span>
+                )}
+              </div>
+
+              {/* emails */}
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text"> Email</span>
+                </label>
+                <input
+                  {...register("email", {
+                    required: true,
+                    pattern: /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/,
+                  })}
+                  id="email"
+                  type="email"
+                  placeholder="Enter Your Email"
+                  autoComplete="email"
+                  className="appearance-none input input-bordered"
+                />
+                {errors.email && (
+                  <span className="text-red-600">
+                    {" "}
+                    Please enter a valid email address
+                  </span>
+                )}
+              </div>
+              {/* number */}
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">Phone</span>
+                </label>
+                <input
+                  {...register("number", {
+                    required: true,
+                    pattern: /^[0-9]+$/,
+                  })}
+                  id="number"
+                  type="number"
+                  placeholder="Enter Your Number"
+                  autoComplete="number"
+                  className="appearance-none input input-bordered"
+                />
+                {errors.number && (
+                  <span className="text-red-600">
+                    Please enter a active phone number?
+                  </span>
+                )}
+              </div>
+
               {/* job descriptions */}
               <div className="relative w-full">
-                <h1 className="font-semibold">Job-Descriptions</h1>
+                <h1 className="font-semibold">Why should you hire?</h1>
                 <textarea
-                  {...register("jobDescription", {
+                  {...register("questions", {
                     required: "Job description is required",
                   })}
                   className={`pl-3 pt-3 border ${
-                    errors.jobDescription
-                      ? "border-red-500"
-                      : "border-green-500"
+                    errors.questions ? "border-red-500" : "border-green-500"
                   } resize-none w-full sm:w-1/2 md:w-2/3 lg:w-full`}
                   cols="54"
                   rows="3"
                   placeholder="Type job description"
                 ></textarea>
-                {errors.jobDescription && (
-                  <p className="text-red-500">
-                    {errors.jobDescription.message}
-                  </p>
+                {errors.questions && (
+                  <p className="text-red-500">{errors.questions.message}</p>
                 )}
               </div>
-              {/* image hoisting usrl */}
-              {/* <div className="form-control w-full">
-                <label className="label">
-                  <span className="label-text">Upload Image</span>
-                </label>
-                <input
-                  type="file"
-                  {...register("image")}
-                  className="file-input file-input-success file-input-bordered w-full"
-                />
-                {errors.image && (
-                  <span className="text-red-600 animate-pulse">
-                    Image is required
-                  </span>
-                )}
-              </div> */}
 
-              {/* Position */}
-              {/* <div className="form-control w-full">
+              {/* experience */}
+              <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text font-semibold">Position </span>
+                  <span className="label-text font-semibold">
+                    How much experience do you have?{" "}
+                  </span>
                 </label>
                 <select
-                  {...register("position", { required: true })}
+                  {...register("experience", { required: true })}
                   required
                   className="select input input-bordered border border-green-500 w-full "
                 >
                   <option disabled selected>
-                    Select Position
+                    Select Experience
                   </option>
-                  <option>Full Time</option>
-                  <option>Part Time</option>
-                  <option>InternShip</option>
+                  <option>0-1 year</option>
+                  <option>1-2 year</option>
+                  <option>2-3 year</option>
                 </select>
-                {errors.position && (
-                  <span className="text-red-600">SobCategory is required</span>
+                {errors.experience && (
+                  <span className="text-red-600">Experience is required</span>
                 )}
-              </div> */}
+              </div>
+
+              {/* resume upload */}
+              <div
+                className="form-control w-full"
+                onDrop={onFileDrop}
+                onDragOver={(event) => event.preventDefault()}
+              >
+                <label className="label">
+                  <span className="label-text">Drag and Drop File</span>
+                </label>
+                <div className="border border-dashed border-gray-300 p-4">
+                  {selectedFile ? (
+                    <p className="text-green-600">
+                      File selected: {selectedFile.name}
+                    </p>
+                  ) : (
+                    <p className="text-gray-500">Drag a file here</p>
+                  )}
+                </div>
+              </div>
 
               <button className="my-btn w-full mt-5 p-2 text-lg rounded-md text-white bg-green-600 hover:bg-green-700">
-                Post
+                Submit
               </button>
             </form>
           </div>
